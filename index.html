@@ -41,7 +41,7 @@ sections:
                         <li class="list-group-item">
                             <div>
                             <h2>
-                                <a href="{{ post.url }}"><span class="glyphicon glyphicon-calendar"></span></a>  {{ post.title }}
+                                <a href="{{ post.url | prepend: site.baseurl }}"><span class="glyphicon glyphicon-calendar"></span></a>  {{ post.title }}
                             </h2>
                             </div>
                             
