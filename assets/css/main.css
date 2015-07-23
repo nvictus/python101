@@ -27,6 +27,7 @@ body {
     height: 450px;
 }
 
+
 a.img-logo img {
     border-radius: 20px;
     margin: 0 auto;
@@ -43,10 +44,30 @@ a.img-logo:hover img {
     margin: 0 auto;
 }
 
-section {
-    padding: 75px 0;
+@media only screen and (max-width: 760px) {
+  .img-logo{
+      display: none;
+  }
 }
 
+figure {
+    text-align: center;
+    display: table;
+    margin: 10px auto;
+}
+
+figcaption {
+    margin: 10px;
+}
+
+/*.img-caption{
+    text-align: center;
+}*/
+
+/*section {
+    padding: 75px 0;
+}
+*/
 .section-heading {
     margin: 30px 0;
     font-size: 4em;
@@ -60,10 +81,12 @@ section {
     margin: 30px 0;
 }
 
-.slogan {
-    color: #fff;
-    text-shadow: 1px 1px #000;
+
+article {
+    padding: 75px 0;
+    margin: 30px 0;
 }
+
 
 footer {
     margin: 50px 0;
@@ -79,3 +102,4 @@ footer {
         font-size: 2em;
     }
 }
+
