@@ -1,0 +1,137 @@
+---
+layout: slides
+permalink: /slides/gotchas
+category: slides
+---
+
+
+class: inverse, center, middle
+
+## Python 2/3 Gotchas!
+
+---
+
+# Integer (truncated) division
+
+.boxed[
+
+.center[
+  **Python 2**
+]
+```python
+>>> 5 / 2   # wtf?
+2
+```
+.red[Caution!] When dividing one `int` by another, Python 2 returns an `int` by default. To get a fraction, make sure at least one of the operands is `float`.
+
+```python
+>>> 5 / 2.0
+2.5
+>>> 5 / float(2)
+2.5
+```
+]
+
+.boxed[
+.center[
+  **Python 3**
+]
+```python
+>>> 5 / 2   # always gives an exact floating point answer
+2.5
+>>> 5 // 2   # always gives a truncated answer
+2
+```
+]
+
+---
+# Printing output
+
+.med-font.boxed[
+.center[**Python 2**]
+
+`print` is a statement (and a reserved keyword).
+<pre><code class="python">
+>>> print "The answer is", 2*2
+</code><code>The answer is 4.</code>
+</pre>
+]
+
+.med-font.boxed[
+.center[**Python 3**]
+
+`print` is a function.
+
+<pre><code class="python">
+>>> print("The answer is", 2*2)
+</code><code>The answer is 4.</code><code class="python">
+>>> print("The answer is", 2*2, sep="")
+</code><code>The answer is4.</code>
+</pre>
+]
+---
+# User input
+
+.boxed[
+.center[**Python2**]
+
+Use `raw_input()`
+]
+
+.boxed[
+.center[**Python 3**]
+
+Use `input()`
+]
+
+```python
+>>> choice = input("Do you understand how the input function works [Y/N]? ")
+```
+---
+# Encodings, oh my!
+
+.med-font[
+- Python 3 makes a very clear distinction between text **strings** (sequences of _unicode characters_) and textual representations of sequences of **bytes** (octets of 1s and 0s).
+
+- Python 2 allowed easy mixing of the two, but this lead to lots of unexpected errors in the way text was read, encoded, and written in applications.
+]
+
+.center[
+
+| data type   | Python 3 name| literal notation | has encoding |
+|:-------|--------------|------------------|---------------
+| unicode string  | **`str`**| `"hello"`| no |
+| bytes     | **`bytes`**| `b"hello"`| yes |
+
+]
+
+<pre><code class="python">
+>>> s1 = "I am a unicode string"
+>>> s2 = b"I am a byte string"
+>>> s1 + s2  # Not allowed in Python 3
+</code><code style="color: red;">TypeError: Can't convert 'bytes' object to str implicitly
+</code>
+</pre>
+
+.med-font[
+The differences won't matter much for now, but consider reading the following article once you are very comfortable using strings:
+]
+
+.center[http://www.diveintopython3.net/strings.html]
+
+---
+
+# Back to the `__future__`
+
+Some backports available in Python 2.7:
+
+```python
+from __future__ import division, print_function, unicode_literals
+
+```
+
+- the `division` import activates Python 3 style division semantics
+- the `print_function` changes the print statement into a function
+- the `unicode_literals` import makes the interpreter treat string literals as unicode text rather than bytes
+
+

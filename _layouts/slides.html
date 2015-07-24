@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Title</title>
+    <title>{{ page.title }}</title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -14,9 +14,129 @@
         font-weight: normal;
       }
       .remark-code, .remark-inline-code { 
-        font-family: 'Ubuntu Mono'; 
+        font-family: 'Ubuntu Mono';
         border-radius: 3px;
       }
+
+      .remark-code {
+        font-size: 80%;
+      }
+
+      .remark-code-line-highlighted > span {
+        color: #444444;
+      }
+
+      .trim-bottom{
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+      }
+
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+
+      /* Two-column layout */
+/*      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }*/
+
+      .left-column{
+        width: 50%;
+        float: left;
+      }
+      .right-column{
+        width: 50%;
+        float: right;
+      }
+
+      .float-right{
+        width: 20%;
+        margin-top: 0;
+        float: right;
+      }
+
+      .red { color: #fa0000; }
+      .green { color: #00fa00; }
+      .blue { color: #0000fa; }
+
+      .boxed {
+        padding: 10px;
+        margin: 5px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+/*      .boxed>p {
+        padding: 5px;
+      }*/
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0; 
+    font-size: 50%;
+  }
+    table tr {
+      border-top: 1px solid #cccccc;
+      background-color: white;
+      margin: 0;
+      padding: 0; 
+    }
+      table tr:nth-child(2n) {
+        background-color: #f8f8f8; 
+      }
+      table tr th {
+        font-weight: bold;
+        background-color: #cccccc;
+        border: 1px solid #cccccc;
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px; 
+      }
+      table tr td {
+        border: 1px solid #cccccc;
+        text-align: left;
+        margin: 0;
+        padding: 6px 13px; 
+      }
+      table tr th :first-child, table tr td :first-child {
+        margin-top: 0; 
+      }
+      table tr th :last-child, table tr td :last-child {
+        margin-bottom: 0; 
+      }
+
+    .med-font{
+      font-size: 80%;
+    }
+    .output{
+      font-size: 90%;
+      color: #444444;
+
+    }
     </style>
   </head>
   <body>
@@ -29,7 +149,9 @@
     </script>
     <script>
       var slideshow = remark.create({
-        highlightStyle: 'monokai'
+        highlightStyle: 'github',
+        highlightSpans: false,
+        highlightLines: true
       });
     </script>
   </body>
