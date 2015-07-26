@@ -6,5 +6,213 @@ category: slides
 
 class: center, middle
 
-# Day 1
+# Namespaces, modules, classes
 
+---
+
+# Modules 
+
+- A way to put definitions in a file and use them in a script or in an interactive instance of the interpreter.
+
+- Definitions from a module can be imported into other modules or into your script.
+
+- A module is a file (with the suffix `.py`) containing Python definitions and statements.
+
+- A module can contain executable statements as well as function definitions and can import other modules.
+
+- `dir()` function
+
+---
+
+# Importing
+
+```python
+import foo
+foo.bar()
+
+from foo import bar
+bar()
+
+from foo import bar, baz, spam, eggs
+
+from foo import *  # bad practice, use sparingly!
+```
+---
+
+# Scripts
+
+Every `.py` file can be imported as a module.
+
+In particular, when you execute a Python file as a script
+
+```bash
+$ python my_script.py
+
+```
+
+the code in the module will be executed, just as if you imported it, but with the `__name__` attribute of the module set to "__main__".
+
+As a result, the "`if __name__=='__main__`" idiom lets makes a Python file usable as a module and script:
+
+```python
+# --- fibo.py ---
+# Fibonacci numbers module
+
+def fib(n):    # write Fibonacci series up to n
+    a, b = 0, 1
+    while b < n:
+        print(b, end=' ')
+        a, b = b, a+b
+    print()
+
+if __name__ == "__main__":
+    import sys
+    fib(int(sys.argv[1]))  # run the fib function on command line input
+
+```
+
+
+
+
+---
+class: inverse
+
+# The Zen
+
+```python
+>>> import this
+```
+
+```
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+
+```
+
+---
+# Namespaces: a honking good idea
+
+A _namespace_ is a mapping from names to objects. 
+
+Examples:
+- the set of built-in names (function names and exception names)
+- the global names in a module
+- the local names in a function invocation
+- the attribute names of an object
+
+---
+
+# Variable scope ([LEGB rule](http://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html))
+
+A _scope_ is a textual region of a Python program where a namespace is directly accessible.
+
+.right-column[<img width="200px" src='{{ "/assets/img/scope_resolution.png" | prepend: site.baseurl }}'>]
+
+1\. **L** local
+
+names assigned in a function (using `def` or `lambda`) and not declared global in that function.
+
+2\. **E** enclosing function
+
+names in the local scope of any and all enclosing functions, from inner to outer.
+
+3\. **G** global (module-level)
+
+names assigned at the top-level of a module file, or declared global in a function within the file using the `global` keyword
+
+4\. **B** builtin
+
+names preassigned as built-in names module, e.g.: `open`, `range`, `SyntaxError`, ...
+
+---
+
+# [Classes](https://docs.python.org/3.5/tutorial/classes.html)
+
+- Classes are the blueprints or definitions for creating (instantiating) new objects
+
+- Objects (class instances) have both data and behavior (methods).
+
+---
+
+# Class definition
+
+```
+class ClassName:
+    <statement-1>
+    .
+    .
+    .
+    <statement-N>
+
+```
+
+---
+
+# Instantiation and `__init__`
+
+
+---
+# Class vs instance variables
+
+
+---
+# Methods
+
+---
+# Inheritance
+
+---
+# Private variables
+
+---
+# Exceptions are classes too!
+
+---
+class: center, middle
+
+# PyGame
+
+---
+# What is PyGame?
+
+- PyGame is a wrapper around the Simple DirectMedia Layer (SDL) library, written in C, which provides access to your computer's audio, keyboard, mouse, joystick, and graphics hardware.
+
+- SDL, in turn is a wrapper around many of your Operating System's low-level graphics and multimedia functionality.
+
+.center[<img height="400px" src='{{ "/assets/img/pygamelogo.jpg" | prepend: site.baseurl }}'>]
+
+<!-- Dump of PyGame introductory material: http://www.pygame.org/docs/tut/ -->
+<!-- http://openbookproject.net/thinkcs/python/english3e/pygame.html -->
+
+---
+# The game loop
+
+<figure>
+.center[<img src='{{ "/assets/img/pygame_structure.png" | prepend: site.baseurl }}'>]
+<figcaption>.small[http://openbookproject.net/thinkcs/python/english3e/pygame.html]</figcaption>
+</figure>
+
+Pygame **polls** the system for events. Then we update any objects that need updating and redraw the current state of the game.
+
+---
+
+# A simple physics simulator

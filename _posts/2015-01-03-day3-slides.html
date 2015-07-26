@@ -3,3 +3,97 @@ layout: slides
 permalink: /lecture/3/slides
 category: slides
 ---
+
+class: center, middle
+
+# More features
+
+---
+# Lambda Expressions
+
+Python allows for the creation of single-expression "anonymous" functions using the `lambda` keyword.
+
+```python
+add = lambda x, y: x + y
+
+```
+
+is equivalent to:
+```python
+def <lambda>(x, y):
+	return x + y
+
+add = <lambda>
+```
+
+They are useful for passing small functions as arguments to other procedures.
+
+```python
+>>> pairs = [(1, 'one'), (2, 'two'), (3, 'three'), (4, 'four')]
+>>> sorted(pairs, key=lambda pair: pair[1])
+[(4, 'four'), (1, 'one'), (3, 'three'), (2, 'two')]
+```
+
+---
+# Sequence and Dictionary unpacking
+
+---
+# Functional primitives
+
+- `map`
+
+- `reduce`
+
+- `filter`
+
+---
+
+# Comprehensions
+
+- List comprehensions
+
+```python
+squares = [x**2 for x in range(10)]
+
+parity = ['even' for x in range(100) if x % 2 == 0 else 'odd']
+
+```
+
+- Set comprehensions
+
+```python
+parity = {'even' for x in range(100) if x % 2 == 0 else 'odd'}
+
+```
+
+- Dict comprehensions
+
+```python
+even_squares = {x:x**2 for x in range(100) if x % 2 == 0}
+
+```
+
+
+---
+
+# Generators
+
+
+---
+
+# Coding style
+
+[PEP8](https://www.python.org/dev/peps/pep-0008/)
+
+- Source code checkers:
+	- https://pypi.python.org/pypi/flake8
+
+
+---
+# Standard Library
+
+- `os`
+- `sys` (python path, modules, command line args)
+- `math`
+- `time`, `datetime`
+- `unittest`
