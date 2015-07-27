@@ -102,7 +102,6 @@ str
 - Lots of other specialized built-in types (e.g., `datetime`)
 ]
 
-{% comment %}
 ---
 class: middle
 
@@ -119,9 +118,8 @@ Python
 my_int = 5
 my_int = "five"  # Not a problem!
 ```
-{% endcomment %}
----
 
+---
 # Statements and expressions
 
 ```python
@@ -254,6 +252,7 @@ How do they differ?
 ```
 
 - Lists are **mutable**
+- O(1) amortized insertion at the end
 
 <pre><code class="python">
 >>> x = [1,2,3]
@@ -330,6 +329,23 @@ else:
 	print("x is ginormous!")
 ```
 ---
+# Truthiness
+
+- truthy: `True`, any nonzero number, non-empty collections
+- falsy: `False`, `None`, `0`, empty collections (`__len__` attribute is 0)
+
+```
+while True:
+	... do something ...
+	if len(buffer) == 0:
+		print("buffer is empty")
+
+while buffer:
+	... do something ...
+
+```
+
+---
 class: inverse
 
 # Significant whitespace
@@ -351,6 +367,15 @@ class: inverse
 
 ---
 
+
+```
+Also, 
+ 	don't mix 
+ spaces and 
+ 		tabs!
+```
+
+---
 
 # Functions
 
@@ -776,6 +801,20 @@ Objects have a well-defined type and can be assigned to variables.
 
 ---
 
+# Batteries included: The Standard Library
+
+Some useful modules:
+
+- `os`
+- `sys` (python path, modules, command line args)
+- `collections`
+- `heapq`
+- `math`
+- `re`
+- `json`
+- `time`
+- `datetime`
+- `unittest`
 
 
 
@@ -791,10 +830,6 @@ Functions not bound to a name.
 	- Can only contain a single expression.
 	- Doesn't need to be assigned to a variable.
 	- Handy for "functional programming" concepts.
-
----
-
-# Truthiness
 
 ---
 {% endcomment %}

@@ -1,0 +1,51 @@
+---
+layout: slides
+permalink: /slides/exercises
+category: slides
+---
+
+# DNA sequences
+
+<img src='{{ "/assets/img/reverse_complement.png" | prepend: site.baseurl }}'>
+
+- reverse complement
+<!-- - translate -->
+
+---
+
+# Guess the number
+
+Write a program to play "Guess the Number", where the number to be guessed it randomly chosen between 1 and 20.
+
+---
+
+# Lingo
+
+In a game of Lingo, there is a hidden word, five characters long. The object of the game is to find this word by guessing, and in return receive two kinds of clues: 
+
+1) the characters that are fully correct, with respect to identity as well as to position, and 
+
+2) the characters that are indeed present in the word, but which are placed in the wrong position. 
+
+Write a program with which one can play Lingo. Use square brackets to mark characters correct in the sense of 1), and ordinary parentheses to mark characters correct in the sense of 2).
+
+Assuming, for example, that the program conceals the word "tiger", you should be able to interact with it in the following way:
+
+```
+>>> import lingo
+>>> lingo.start_game()
+snake
+Clue: snak(e)
+fiest
+Clue: f[i](e)s(t)
+times
+Clue: [t][i]m[e]s
+tiger
+Clue: [t][i][g][e][r]
+```
+
+---
+
+# Word Count
+
+Write a procedure `char_freq_table()` that, when run in a terminal, accepts a file name from the user, builds a frequency listing of the characters contained in the file, and prints a sorted and nicely formatted character frequency table to the screen.
