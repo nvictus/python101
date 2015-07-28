@@ -76,7 +76,7 @@ from import global del lambda with
 .left-column[
 - Numeric
 ```python
-int, float
+int, float, complex
 ```
 
 - Boolean (logical)
@@ -88,11 +88,17 @@ bool
 ```python
 str
 ```
+
+- Binary sequences
+```python
+bytes
+```
 ]
+
 
 .right-column[
 
-- Container types
+- Collection types
 	- `list`
 	- `tuple`
 	- `set`
@@ -156,12 +162,15 @@ spam = 'eggs'  # So am I!
 - Assignment: `=`, `+=`, `-=`, `*=`, `/=`
 - Logical: `and`, `or`, `not`
 - Membership: `in`, `not in`
-- Identity: `is`, `is not`
+- Identity*: `is`, `is not`
 <!-- - Bitwise: `&`, `|`, `^`, `<<`, `>>`
  -->
 
 
 Operator [precedence rules](https://docs.python.org/3/reference/expressions.html#operator-precedence)
+
+\* The `==` operator tests whether two variables have the same _value_, whereas the `is` operator tests whether two variables _refer to the same object_.
+
 ---
 
 # Strings
@@ -331,19 +340,27 @@ else:
 ---
 # Truthiness
 
-- truthy: `True`, any nonzero number, non-empty collections
-- falsy: `False`, `None`, `0`, empty collections (`__len__` attribute is 0)
+- **truthy**: `True`, any nonzero number, non-empty strings, non-empty collections
+- **falsy**: `False`, `None`, `0`, `''`, empty collections (`__len__` attribute is 0)
 
-```
+.left-column[
+
+```python
 while True:
 	... do something ...
 	if len(buffer) == 0:
 		print("buffer is empty")
+		break
 
-while buffer:
+while buffer:  # exits when buffer is empty
 	... do something ...
 
 ```
+]
+
+.right-column[<img src="{{ '/assets/img/truthiness.jpg' | prepend: site.baseurl }}">]
+
+
 
 ---
 class: inverse
@@ -366,11 +383,11 @@ class: inverse
 <code style="color: red;">SyntaxError: not a chance</code>
 
 ---
-
+class: middle
 
 ```
 Also, 
- 	don't mix 
+	don't mix 
  spaces and 
  		tabs!
 ```
@@ -772,11 +789,6 @@ for line in file:
 	print(cheese)
 
 ```
-
----
-class: center, middle
-
-# Exercise
 
 ---
 

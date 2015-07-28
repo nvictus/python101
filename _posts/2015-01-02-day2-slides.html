@@ -36,6 +36,45 @@ If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 
 ```
+---
+
+# In Python, everything is an _object_
+
+Objects have a well-defined type and can be assigned to variables. 
+
+Every object has an **identity**, a **type** and a **value**.
+
+- We've seen examples of built-in objects with types `str`, `float`, `dict`, etc. But functions, file handles, and even `None` are objects too.
+    - e.g., we can pass the builtin function `int` as an argument to another builtin function, `map`
+```python
+>>> map(int, [1.15, 2.08, 3.14, 4.89])
+[1, 2, 3, 4]
+```
+
+
+- Many objects have accessible properties called _attributes_. 
+    - attributes are accessed using dot `.` notation
+- Many objects also have callable attributes _methods_.
+    - these are special functions that are bound to objects
+- We can create our own custom objects by "deriving" or "subclassing" them from builtins.
+    - this is called "object-oriented programming" (more later)
+
+
+---
+# Batteries included: [The Standard Library](https://docs.python.org/3/library/)
+
+Some useful modules:
+
+- `sys`: python path, stdin, stdout, other utilities
+- `os`: miscellaneous operating system interfaces
+- `re`: regular expressions
+- `collections`: more data structures!
+- `heapq`: priority queue algorithms
+- `itertools`: functions to create efficient iterators
+- `math`: mathematical functions
+- `json`: read/write JSON formatted data
+- `unittest`: unit testing framework
+
 
 ---
 class: center, middle
@@ -50,9 +89,11 @@ class: center, middle
 
 - Definitions from a module can be imported into other modules or into your script.
 
-- A module is a file (with the suffix `.py`) containing Python definitions and statements.
+- A module is a file (with the suffix `.py`) containing Python definitions and statements. 
 
-- A module can contain executable statements as well as function definitions and can import other modules.
+- There are also hierarchical modules, called "packages", which are directories containing a file called `__init__.py`.
+
+- A module can contain executable statements as well as function definitions and can import other modules. 
 
 - `dir()` function
 
@@ -84,9 +125,9 @@ $ python my_script.py
 
 ```
 
-the code in the module will be executed, just as if you imported it, but with the `__name__` attribute of the module set to "__main__".
+the code in the module will be executed, just as if you imported it, but with the `__name__` attribute of the module set to `"__main__"`.
 
-As a result, the "`if __name__=='__main__`" idiom lets makes a Python file usable as a module and script:
+As a result, the "`if __name__=='__main__`" idiom lets makes a Python file usable both as a module and script:
 
 ```python
 # --- fibo.py ---
@@ -104,7 +145,6 @@ if __name__ == "__main__":
     fib(int(sys.argv[1]))  # run the fib function on command line input
 
 ```
-
 ---
 # Namespaces: a honking good idea
 
@@ -118,7 +158,7 @@ Examples:
 
 ---
 
-# Variable scope ([LEGB rule](http://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html))
+# Variable scope (LEGB rule)
 
 A _scope_ is a textual region of a Python program where a namespace is directly accessible.
 
@@ -142,18 +182,44 @@ names preassigned as built-in names module, e.g.: `open`, `range`, `SyntaxError`
 
 ---
 
+
+```python
+a_var = 'global value'
+ 
+def outer():
+    a_var = 'enclosed value'
+ 
+    def inner():
+        a_var = 'local value'
+        print(a_var)
+ 
+    inner()
+ 
+outer()
+```
+[source](http://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html)
+
+
+What's the output ???
+
+---
+
 # [Classes](https://docs.python.org/3.5/tutorial/classes.html)
+
+User-defined data types!
 
 - Classes are the blueprints or definitions for creating (instantiating) new objects
 
 - Objects (class instances) have both data and behavior (methods).
+
+- Objects are *mutable*. Their attributes are accessible using dot notation.
 
 ---
 
 # Class definition
 
 ```
-class ClassName:
+class ClassName(<base classes>):
     <statement-1>
     .
     .
@@ -162,33 +228,139 @@ class ClassName:
 
 ```
 
+```python
+class Point:
+    """ Point class represents and manipulates x,y coords. """
+
+    def __init__(self):
+        """ Create a new point at the origin """
+        self.x = 0
+        self.y = 0
+
+p = Point()         # Instantiate an object of type Point
+q = Point()         # Make a second point
+
+print(p.x, p.y, q.x, q.y)  # Each point object has its own x and y
+
+```
+
 ---
 
 # Instantiation and `__init__`
 
+The `__init__` method is the class initializer or "constructor".
 
+```python
+class Point:
+    """ Point class represents and manipulates x,y coords. """
+
+    def __init__(self, x=0, y=0):
+        """ Create a new point at x, y """
+        self.x = x
+        self.y = y
+
+p = Point(5, 6)
+```
 ---
+# Attributes and methods
+
+```python
+class Point:
+    """ Create a new Point, at coordinates x, y """
+    def __init__(self, x=0, y=0):
+        """ Create a new point at x, y """
+        self.x = x
+        self.y = y
+
+    def distance_from_origin(self):
+        """ Compute my distance from the origin """
+        return ((self.x ** 2) + (self.y ** 2)) ** 0.5
+```
+---
+{% comment %}
+
 # Class vs instance variables
 
 
----
-# Methods
+```python
+class MyClass:
 
----
-# Inheritance
+    counter = 0
+    
+    def __init__(self): 
+        self.counter += 1
 
----
+    def __del__(self):
+        self.counter -= 1
+```
+
+vs.
+
+```python
+class MyClass:
+
+    def __init__(self): 
+        self.counter = 0
+        type(self).counter += 1
+
+    def __del__(self):
+        type(self).counter -= 1
+```
 # "Private" variables
+{% endcomment %}
 
 ---
-# Underscore conventions
+# Inheritance and polymorphism
 
-- `_foo` non-public, use me at your own risk
-- `__foo` private, name gets mangled
-- `__foo__`, magic name, usually builtin attributes or names used to fulfill protocols (e.g., iteration)
+```python
+
+class Animal(object):
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        raise NotImplementedError
+
+    def sleep(self):
+        print("ZzzzZzzzZZzzzz...")
+
+
+class Dog(Animal):
+    def speak(self):
+        print("Woof!")
+
+
+class Cat(Animal):
+    def speak(self):
+        print("Meow!")
+```
+
+
+
+---
+# Sidenote: underscore conventions
+
+- `_foo`:
+non-public, use me at your own risk
+
+- `__foo`:
+private, name gets mangled
+
+- `__foo__`:
+usually builtin special attributes or names used to fulfill protocols (e.g., iteration). These are sometimes called [magic methods](http://www.rafekettler.com/magicmethods.html).
 
 ---
 # Exceptions are classes too!
+
+```python
+class PageNotFoundError(Exception):
+    pass
+
+...
+
+if page not in pages:
+    raise PageNotFoundError
+```
 
 ---
 class: center, middle
