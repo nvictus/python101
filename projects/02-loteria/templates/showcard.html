@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Loteria</title>
+</head>
+
+<body>
+	<h1>Loteria</h1>
+
+	<div>
+		<img height="200px" src="{{ url_for('static', filename=image_name) }}">
+	</div>
+
+	<form action="/draw">
+		<input type="submit" value="Next card">
+	</form>
+
+	<form action="/">
+		<input type="submit" value="Start over">
+	</form>
+
+</body>
+</html>
