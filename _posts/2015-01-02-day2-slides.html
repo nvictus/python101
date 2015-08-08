@@ -85,15 +85,13 @@ class: center, middle
 
 # Modules 
 
-- A way to put definitions in a file and use them in a script or in an interactive instance of the interpreter.
+A way to put definitions in a file and use them in a program or in an interactive instance of the interpreter.
+
+- A module is a file (with the suffix `.py`) containing Python definitions and statements. A module can contain executable statements as well as function definitions and can import other modules.
 
 - Definitions from a module can be imported into other modules or into your script.
 
-- A module is a file (with the suffix `.py`) containing Python definitions and statements. 
-
 - There are also hierarchical modules, called "packages", which are directories containing a file called `__init__.py`.
-
-- A module can contain executable statements as well as function definitions and can import other modules. 
 
 - `dir()` function
 
@@ -127,7 +125,7 @@ $ python my_script.py
 
 the code in the module will be executed, just as if you imported it, but with the `__name__` attribute of the module set to `"__main__"`.
 
-As a result, the "`if __name__=='__main__`" idiom lets makes a Python file usable both as a module and script:
+As a result, the <em>`if __name__=='__main__'`</em> idiom lets makes a Python file usable both as a module and script:
 
 ```python
 # --- fibo.py ---
@@ -182,6 +180,7 @@ names preassigned as built-in names module, e.g.: `open`, `range`, `SyntaxError`
 
 ---
 
+Consider the following code:
 
 ```python
 a_var = 'global value'
@@ -197,11 +196,11 @@ def outer():
  
 outer()
 ```
-[source](http://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html)
-
 
 What's the output ???
 
+
+- <small>source: http://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html</small>
 ---
 
 # [Classes](https://docs.python.org/3.5/tutorial/classes.html)
@@ -307,9 +306,10 @@ class MyClass:
         type(self).counter -= 1
 ```
 # "Private" variables
-{% endcomment %}
 
 ---
+{% endcomment %}
+
 # Inheritance and polymorphism
 
 ```python
@@ -391,4 +391,6 @@ Pygame **polls** the system for events. Then we update any objects that need upd
 
 ---
 
-# A simple physics simulator
+# A simple physics engine
+
+.center[<img style="border: solid black 1px" src='{{ "/assets/img/billiard.png" | prepend: site.baseurl }}'>]
