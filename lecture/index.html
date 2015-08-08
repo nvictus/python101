@@ -1,0 +1,12 @@
+---
+layout: page
+---
+
+<div class="container">
+{% for post in site.posts reversed %}
+    {% if post.category == 'lecture' %}
+    <h3><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+    <p><small><strong>{{ post.date | date: "%B %e, %Y" }}</strong> &middot; {{ post.category }}</small></p>
+    {% endif %}
+{% endfor %}
+</div>

@@ -341,7 +341,7 @@ else:
 # Truthiness
 
 - **truthy**: `True`, any nonzero number, non-empty strings, non-empty collections
-- **falsy**: `False`, `None`, `0`, `''`, empty collections (`__len__` attribute is 0)
+- **falsy**: `False`, `None`, `0`, `''`, empty collections (`__len__()` returns 0)
 
 .left-column[
 
@@ -811,6 +811,7 @@ Objects have a well-defined type and can be assigned to variables.
 - We can create our own custom objects by "deriving" or "subclassing" them from builtins.
 	- this is called "object-oriented programming" (more later)
 
+{% comment %}
 ---
 
 # Batteries included: The Standard Library
@@ -830,7 +831,7 @@ Some useful modules:
 
 
 
-{% comment %}
+
 ---
 
 # Functions are objects too!
