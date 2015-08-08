@@ -127,6 +127,7 @@ def main():
         # move the circles and draw them
         for i, circle in enumerate(circles):
             circle.move(dt)
+            # detect collisions and handle them
             for other_circle in circles[i+1:]:
                 if circle.surface_distance(other_circle, dt) <= 0:
                     circle.collide(other_circle)

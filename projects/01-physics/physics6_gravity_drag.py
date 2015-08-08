@@ -93,7 +93,7 @@ def main():
     colors = [BLACK, RED, GREEN, BLUE]
     speed = 100  # pixels per second
     number_of_circles = 10
-    gravity = Vector2(0, 10)  # pixels per second per second
+    gravity = Vector2(0, 50)  # pixels per second per second
 
     # Initialize the display window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -131,6 +131,7 @@ def main():
         # move the circles and draw them
         for i, circle in enumerate(circles):
             circle.move(dt)
+            # detect collisions and handle them
             for other_circle in circles[i+1:]:
                 if circle.surface_distance(other_circle, dt) <= 0:
                     circle.collide(other_circle)

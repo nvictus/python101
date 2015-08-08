@@ -1,25 +1,24 @@
 
 HIDDEN_NUMBER = 3
 
-def start_game_forloop():
+def start_game():
 
-    for i in range(3):
-        guess = input('Guess a number between 1 and 10: ')
-        guess_number = int(guess)
+    number_of_guesses = 0
+    while number_of_guesses < 3:
+        guess_string = input('Guess a number between 1 and 10: ')
+        guess = int(guess_string)
 
         # validate user input
-        if 1 <= guess_number <= 10:
-            if guess_number == HIDDEN_NUMBER:
+        if 1 <= guess <= 10:
+            if guess == HIDDEN_NUMBER:
                 print('Congrats! You got it right.')
                 break
             else:
                 print("That's wrong.")
+                number_of_guesses += 1
         else:
             print('I said, a number between 1 and 10!!!')
 
 
-
-
-
-
-start_game_forloop()
+if __name__ == '__main__':
+    start_game()
