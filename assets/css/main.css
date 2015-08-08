@@ -37,23 +37,24 @@ a.img-logo img {
 }
 
 a.img-logo:hover img {
+    -moz-box-shadow: 1px 1px 10px #999; 
+    -webkit-box-shadow: 1px 1px 10px #999; 
+    box-shadow: 1px 1px 10px #999;
+}
+
+a.img-logo:active img {
+    -moz-box-shadow: inset -2px -2px #888; 
+    -webkit-box-shadow: inset -2px -2px #888; 
+    box-shadow: inset -2px -2px #888;
+    border: solid #888;
     opacity: 0.8;
 }
 
-.img-center {
-    margin: 0 auto;
-}
-
-@media only screen and (max-width: 760px) {
-  .img-logo{
-      display: none;
-  }
-}
 
 figure {
     text-align: center;
-    display: table;
     margin: 10px auto;
+    width: 100%;
 }
 
 figcaption {
@@ -110,4 +111,13 @@ footer {
     .section-heading {
         font-size: 2em;
     }
+}
+
+@media only screen and (max-width: 760px) {
+  .img-logo{
+      display: none;
+  }
+  .image-bg-fluid-height {
+      display: none;
+  }
 }
