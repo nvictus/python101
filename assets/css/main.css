@@ -81,6 +81,11 @@ figcaption {
     margin: 30px 0;
 }
 
+.section-lead-centered {
+    text-align: center;
+    margin: 30px 0;
+}
+
 
 article {
     padding: 75px 0;
@@ -90,6 +95,10 @@ article {
 
 footer {
     margin: 50px 0;
+}
+
+.centered {
+    margin: auto;
 }
 
 @media(max-width:768px) {
