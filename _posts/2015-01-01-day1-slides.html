@@ -264,9 +264,10 @@ How do they differ?
 - O(1) amortized insertion at the end
 
 <pre><code class="python">
->>> x = [1,2,3]
+>>> x = [1,2]
 >>> x[1] = 'Two'
->>> x.append([4,'Five',6])
+>>> x.append(3)
+>>> x.extend([4,'Five',6])
 >>> x
 </code><code>[1, 'Two', 3, 4, 'Five', 6]</code>
 </pre>
